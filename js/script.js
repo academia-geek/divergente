@@ -16,7 +16,10 @@ let registrarFaccion = (e) => {
 }
 
 let calcularTotalFacciones = (e) => {
+	let contadores_facciones = [0,0,0,0,0,0];
+    let porcentajes_facciones = [0,0,0,0,0,0];
 	let Contador_Abnegaciones = 0, Contador_Cordialidad = 0, Contador_Erudicion = 0, Contador_Osadia = 0, Contador_Verdad = 0, Contador_Divergente = 0;
+    let porcentaje1 = 0;
     var HTML_TOTAL = '';
     /*for (let index = 0; index < facciones.length; index++) {
         const element = facciones[index];
@@ -27,8 +30,8 @@ let calcularTotalFacciones = (e) => {
     }*/
     facciones.forEach((element, index) => {
         //console.log(element);
-        if(element == "A"){
-           Contador_Abnegaciones = Contador_Abnegaciones+1;
+        if(element == "A"){ 
+            contadores_facciones[0] = contadores_facciones[0] + 1
         }else if(element == 'C'){
             Contador_Cordialidad++;
         }else if(element == 'E'){
@@ -43,11 +46,13 @@ let calcularTotalFacciones = (e) => {
         
     });
     
+    porcentajes_facciones[0] = (contadores_facciones[0]/facciones.length) * 100 ;
+    
     HTML_TOTAL = `<table border=1>
                     <tr>
                         <td>Abnegación (A)</td>
-                        <td>${Contador_Abnegaciones}</td>
-                        <td>${(Contador_Abnegaciones/facciones.length)*100}%</td>
+                        <td>${contadores_facciones[0]}</td>
+                        <td>${porcentajes_facciones[0]}%</td>
                     </tr>
                     <tr>
                         <td>Cordialidad (C)</td>
