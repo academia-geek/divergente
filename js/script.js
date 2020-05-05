@@ -47,41 +47,35 @@ let calcularTotalFacciones = (e) => {
                     <tr>
                         <td>Abnegación (A)</td>
                         <td>${Contador_Abnegaciones}</td>
-                        <td></td>
+                        <td>${(Contador_Abnegaciones/facciones.length)*100}%</td>
                     </tr>
                     <tr>
                         <td>Cordialidad (C)</td>
                         <td>${Contador_Cordialidad}</td>
-                        <td></td>
+                        <td>${(Contador_Cordialidad/facciones.length)*100}%</td>
                     </tr>
                     <tr>
                         <td>Erudición (E)</td>
                         <td>${Contador_Erudicion}</td>
-                        <td></td>
+                        <td>${(Contador_Erudicion/facciones.length)*100}%</td>
                     </tr>
                     <tr>
                         <td>Osadía (O)</td>
                         <td>${Contador_Osadia}</td>
-                        <td></td>
+                        <td>${(Contador_Osadia/facciones.length)*100}%</td>
                     </tr>
                     <tr>
                         <td>Verdad (V)</td>
                         <td>${Contador_Verdad}</td>
-                        <td></td>
+                        <td>${(Contador_Verdad/facciones.length)*100}%</td>
                     </tr>
                     <tr>
                         <td>Divergente</td>
                         <td>${Contador_Divergente}</td>
-                        <td></td>
+                        <td>${(Contador_Divergente/facciones.length)*100}%</td>
                     </tr>
                 </table>`;
         document.getElementById('ctn_totalfacciones').innerHTML = HTML_TOTAL;
-    console.log(Contador_Abnegaciones);
-    console.log(Contador_Cordialidad);
-    console.log(Contador_Erudicion);
-    console.log(Contador_Osadia);
-    console.log(Contador_Verdad);
-    console.log(Contador_Divergente);
 }
 
 document.getElementById('btn_enviar_faccion').addEventListener('click', registrarFaccion);
