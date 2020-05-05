@@ -17,6 +17,7 @@ let registrarFaccion = (e) => {
 
 let calcularTotalFacciones = (e) => {
 	let Contador_Abnegaciones = 0, Contador_Cordialidad = 0, Contador_Erudicion = 0, Contador_Osadia = 0, Contador_Verdad = 0, Contador_Divergente = 0;
+    var HTML_TOTAL = '';
     /*for (let index = 0; index < facciones.length; index++) {
         const element = facciones[index];
         console.log("================");
@@ -25,7 +26,7 @@ let calcularTotalFacciones = (e) => {
         console.log("================");
     }*/
     facciones.forEach((element, index) => {
-        console.log(element);
+        //console.log(element);
         if(element == "A"){
            Contador_Abnegaciones = Contador_Abnegaciones+1;
         }else if(element == 'C'){
@@ -42,7 +43,45 @@ let calcularTotalFacciones = (e) => {
         
     });
     
+    HTML_TOTAL = `<table border=1>
+                    <tr>
+                        <td>Abnegación (A)</td>
+                        <td>${Contador_Abnegaciones}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Cordialidad (C)</td>
+                        <td>${Contador_Cordialidad}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Erudición (E)</td>
+                        <td>${Contador_Erudicion}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Osadía (O)</td>
+                        <td>${Contador_Osadia}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Verdad (V)</td>
+                        <td>${Contador_Verdad}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Divergente</td>
+                        <td>${Contador_Divergente}</td>
+                        <td></td>
+                    </tr>
+                </table>`;
+        document.getElementById('ctn_totalfacciones').innerHTML = HTML_TOTAL;
     console.log(Contador_Abnegaciones);
+    console.log(Contador_Cordialidad);
+    console.log(Contador_Erudicion);
+    console.log(Contador_Osadia);
+    console.log(Contador_Verdad);
+    console.log(Contador_Divergente);
 }
 
 document.getElementById('btn_enviar_faccion').addEventListener('click', registrarFaccion);
