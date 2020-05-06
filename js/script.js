@@ -1,12 +1,14 @@
 const facciones = [];
-
+var N_faccion = 0;
 let registrarFaccion = (e) => {
 	var valor = document.getElementById("txt_faccion").value; 
     if(valor.trim() != "" && valor.trim() != null && valor.length == 1){
         if(facciones.length < 20){
+            N_faccion++;
             facciones.push(valor.toLocaleUpperCase());
             document.getElementById("txt_faccion").value = "";
-            //alert("Facción registrada.");
+            document.getElementById("txt_faccion").focus();
+            document.getElementById("N_faccion").innerHTML = N_faccion;
         }else{
             alert("Ya se registro el total de personas");
         }
@@ -18,8 +20,6 @@ let registrarFaccion = (e) => {
 let calcularTotalFacciones = (e) => {
 	let contadores_facciones = [0,0,0,0,0,0];
     let porcentajes_facciones = [0,0,0,0,0,0];
-	let Contador_Abnegaciones = 0, Contador_Cordialidad = 0, Contador_Erudicion = 0, Contador_Osadia = 0, Contador_Verdad = 0, Contador_Divergente = 0;
-    let porcentaje1 = 0;
     var HTML_TOTAL = '';
     /*for (let index = 0; index < facciones.length; index++) {
         const element = facciones[index];
@@ -33,63 +33,60 @@ let calcularTotalFacciones = (e) => {
         if(element == "A"){ 
             contadores_facciones[0] = contadores_facciones[0] + 1
         }else if(element == 'C'){
-            Contador_Cordialidad++;
+            contadores_facciones[1]++;
         }else if(element == 'E'){
-            Contador_Erudicion++;
+            contadores_facciones[2]++;
         }else if(element == 'O'){
-            Contador_Osadia++;
+            contadores_facciones[3]++;
         }else if(element == 'V'){
-            Contador_Verdad++;
+            contadores_facciones[4]++;
         }else{
-            Contador_Divergente++;
+            contadores_facciones[5]++;
         }
         
     });
     
-    porcentajes_facciones[0] = (contadores_facciones[0]/facciones.length) * 100 ;
+    porcentajes_facciones = contadores_facciones.map((contador,  index) => {
+        return (contador/facciones.length) * 100
+    });
     
     HTML_TOTAL = `<table border=1>
                     <tr>
                         <td>Abnegación (A)</td>
                         <td>${contadores_facciones[0]}</td>
-                        <td>${porcentajes_facciones[0]}%</td>
+                        <td>${porcentajes_facciones[0].toFixed(2)}%</td>
                     </tr>
                     <tr>
                         <td>Cordialidad (C)</td>
-                        <td>${Contador_Cordialidad}</td>
-                        <td>${(Contador_Cordialidad/facciones.length)*100}%</td>
+                        <td>${contadores_facciones[1]}</td>
+                        <td>${porcentajes_facciones[1].toFixed(2)}%</td>
                     </tr>
                     <tr>
                         <td>Erudición (E)</td>
-                        <td>${Contador_Erudicion}</td>
-                        <td>${(Contador_Erudicion/facciones.length)*100}%</td>
+                        <td>${contadores_facciones[2]}</td>
+                        <td>${porcentajes_facciones[2].toFixed(2)}%</td>
                     </tr>
                     <tr>
                         <td>Osadía (O)</td>
-                        <td>${Contador_Osadia}</td>
-                        <td>${(Contador_Osadia/facciones.length)*100}%</td>
+                        <td>${contadores_facciones[3]}</td>
+                        <td>${porcentajes_facciones[3].toFixed(2)}%</td>
                     </tr>
                     <tr>
                         <td>Verdad (V)</td>
-                        <td>${Contador_Verdad}</td>
-                        <td>${(Contador_Verdad/facciones.length)*100}%</td>
+                        <td>${contadores_facciones[4]}</td>
+                        <td>${porcentajes_facciones[4].toFixed(2)}%</td>
                     </tr>
                     <tr>
                         <td>Divergente</td>
-                        <td>${Contador_Divergente}</td>
-                        <td>${(Contador_Divergente/facciones.length)*100}%</td>
+                        <td>${contadores_facciones[5]}</td>
+                        <td>${porcentajes_facciones[5].toFixed(2)}%</td>
                     </tr>
                 </table>`;
         document.getElementById('ctn_totalfacciones').innerHTML = HTML_TOTAL;
 }
 
 document.getElementById('btn_enviar_faccion').addEventListener('click', registrarFaccion);
-document.getElementById('calcular_total_facciones').addEventListener('click', calcularTotalFacciones)
-
-let sumar_numeros = (n1, n2) => { 
-   let resultado_texto =  `<b>La suma de los dos numeros es:  ${n1 + n2}</b>`;
-   document.querySelector("#resultado_suma").innerHTML = resultado_texto;
-}
+document.getElementById('calcular_total_facciones').addEventListener('click', calcularTotalFacciones);
 
 
 
