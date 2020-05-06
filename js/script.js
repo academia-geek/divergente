@@ -21,6 +21,8 @@ let calcularTotalFacciones = (e) => {
 	let contadores_facciones = [0,0,0,0,0,0];
     let porcentajes_facciones = [0,0,0,0,0,0];
     var HTML_TOTAL = '';
+    let porcentaje_menor = Number.MAX_VALUE;
+    let indice_menor_porcentaje = -1;
     /*for (let index = 0; index < facciones.length; index++) {
         const element = facciones[index];
         console.log("================");
@@ -47,7 +49,12 @@ let calcularTotalFacciones = (e) => {
     });
     
     porcentajes_facciones = contadores_facciones.map((contador,  index) => {
-        return (contador/facciones.length) * 100
+        let porcentaje = (contador/facciones.length) * 100;
+        if(porcentaje < porcentaje_menor){
+            indice_menor_porcentaje = index;
+            porcentaje_menor = porcentaje;
+        }
+        return porcentaje;
     });
     
     HTML_TOTAL = `<table border=1>
@@ -82,11 +89,33 @@ let calcularTotalFacciones = (e) => {
                         <td>${porcentajes_facciones[5].toFixed(2)}%</td>
                     </tr>
                 </table>`;
+        
         document.getElementById('ctn_totalfacciones').innerHTML = HTML_TOTAL;
+        /**
+         *  Si el porcentaje de miembros de Osadía más el porcentaje de Divergentes supera
+            el 40% del total, la aplicación debe decir “Jeanine, puedes proceder con la
+            dominación total!”
+         */        
+        if((porcentajes_facciones[5] + porcentajes_facciones[3]) > 40){
+            alert("Jeanine, puedes proceder con la dominación total!");
+        }
+        
+        /**
+         *  Si el porcentaje de miembros de Erudición es el menor de todos y no hay
+            Divergentes, la aplicación debe decir “Janine, ¡te tocó aplazar tu maléfico plan!”  
+         */
+        if(indice_menor_porcentaje == 2 && contadores_facciones[5] == 0){
+            alert("Janine, ¡te tocó aplazar tu maléfico plan!");
+        }
+        
 }
 
 document.getElementById('btn_enviar_faccion').addEventListener('click', registrarFaccion);
 document.getElementById('calcular_total_facciones').addEventListener('click', calcularTotalFacciones);
-
+document.getElementById("txt_faccion").addEventListener('keypress',  (e) => {
+    if(e.charCode == 13){
+        registrarFaccion(e);
+    }
+})
 
 
